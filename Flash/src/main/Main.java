@@ -6,8 +6,8 @@ public class Main {
 		
 		String[] names = {"Tim", "Koni", "Lajos"};
 		
-		for(int i = 0; i < names.length; i++) {
-			System.out.println(names[i] + ", Welcome to Flash!");
+		for(String name : names) { //ez majd konfliktust jelent, mert töröltünk.
+			System.out.println(name + ", Welcome to Flash!");
 		}
 	}
 }
