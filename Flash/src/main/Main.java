@@ -6,7 +6,7 @@ public class Main {
 		
 		String[] names = {"Tim", "Koni", "Lajos, Doma"}; //Doma belépett a csapatba, ez nem jelent konfliktust :)
 		
-		for(String name : names) { //ez majd konfliktust jelent, mert töröltünk.
+		for(String name : names) { //ez majd konfliktust jelent.
 			System.out.println(name + ", Welcome to Flash!");
 		}
 	}
