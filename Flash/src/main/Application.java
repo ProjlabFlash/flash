@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Application {
 
-	@SuppressWarnings("unused")
+	
 	static private List<MenuItem> items = new ArrayList<MenuItem>();
 	
 	public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package main;
 
+@SuppressWarnings("unused")
 public class Locomotive extends MovingObject {
 	
 	private int Speed;

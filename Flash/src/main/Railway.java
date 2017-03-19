@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class Railway {
 
 	protected ArrayList<Railway> ThisNeighbour = new ArrayList<>();
