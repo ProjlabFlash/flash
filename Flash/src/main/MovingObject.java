@@ -11,7 +11,7 @@ public abstract class MovingObject {
 	}
 	
 	public void step(Railway toHere) {
-		
+		CurrentRailwaySegment.setOnMe(null);
 	}
 	
 	public void crash() {
