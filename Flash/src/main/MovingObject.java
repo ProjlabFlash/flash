@@ -1,6 +1,6 @@
 package main;
 
-public abstract class MovingObject {
+public abstract class MovingObject extends MetaData {
 	
 	protected Railway CurrentRailwaySegment;
 	protected Railway PreviousRailwaySegment;

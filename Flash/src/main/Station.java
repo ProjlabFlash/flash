@@ -1,6 +1,6 @@
 package main;
 
-public class Station {
+public class Station extends MetaData {
 	
 	private Color color;
 	

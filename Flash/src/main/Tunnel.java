@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class Tunnel {
+public class Tunnel extends MetaData {
 	
 	private BuildingSpot bs1, bs2;
 
