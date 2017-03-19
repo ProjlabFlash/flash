@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 @SuppressWarnings("unused")
 public class BuildingSpot extends Railway {
 
@@ -10,7 +12,7 @@ public class BuildingSpot extends Railway {
 		super(previousRailway);
 	}
 	
-	public void setNewNeighbours(Railway thisNewNeighbour, Railway thatNewNeighbour) {
+	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
 		
 	}
 }
