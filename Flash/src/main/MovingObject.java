@@ -1,10 +1,9 @@
 package main;
 
-@SuppressWarnings("unused")
 public abstract class MovingObject {
 	
-	private Railway CurrentRailwaySegment;
-	private Railway PreviousRailwaySegment;
+	protected Railway CurrentRailwaySegment;
+	protected Railway PreviousRailwaySegment;
 	protected Cart Pulls;
 	
 	public MovingObject(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart) {
