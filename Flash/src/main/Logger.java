@@ -5,11 +5,14 @@ import java.util.ArrayList;
 public class Logger {
 	private int tabcnt;
 	private String line;
+	private boolean init;
 	{
 		tabcnt=0;
 		line="";
+		init=false;
 	}
-	public void enter(Object obj, String fName, ArrayList<Object>params, boolean init)
+	public void setInit(boolean asd){init=asd;}
+	public void enter(Object obj, String fName, ArrayList<Object>params)
 	{
 		if(!init){
 		for(int i=0;i<tabcnt;i++)
@@ -31,7 +34,7 @@ public class Logger {
 		tabcnt++;
 		}
 	}
-	public void exit(String re, boolean init)
+	public void exit(String re)
 	{
 		if(!init){
 		tabcnt--;
