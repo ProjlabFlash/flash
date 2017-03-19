@@ -9,8 +9,9 @@ public class Logger {
 		tabcnt=0;
 		line="";
 	}
-	public void enter(Object obj, String fName, ArrayList<Object>params)
+	public void enter(Object obj, String fName, ArrayList<Object>params, boolean init)
 	{
+		if(!init){
 		for(int i=0;i<tabcnt;i++)
 		{
 			line=line.concat("\t");
@@ -28,9 +29,11 @@ public class Logger {
 		System.out.println(line);
 		line="";
 		tabcnt++;
+		}
 	}
-	public void exit(String re)
+	public void exit(String re, boolean init)
 	{
+		if(!init){
 		tabcnt--;
 		for(int i=0;i<tabcnt;i++)
 		{
@@ -41,6 +44,6 @@ public class Logger {
 		if(re!=null || re!="") line=line.concat(re);
 		System.out.println(line);
 		line="";
-		
+		}
 	}
 }
