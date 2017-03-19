@@ -10,12 +10,19 @@ public class Cart extends MovingObject {
 		super(railwaySegment, previousRailwaySegment, nextCart);
 	}
 	
-	public void leaveTheTrain(Station station) {
-		
+	private void leaveTheTrain(Station station) {
+		Passengers = false;
 	}
 	
 	public boolean colorCheck(Station station) {
-		//atmenetileg
-		return true;
+		if(station.getColor().equals(color)) leaveTheTrain(station);
+		if(Passengers == false && Pulls != null) {
+			return Pulls.colorCheck(station);
+		}
+		if(Passengers == false && Pulls == null) {
+			return true;
+		}
+		
+		return false;
 	}
 }

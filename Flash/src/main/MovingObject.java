@@ -5,7 +5,7 @@ public abstract class MovingObject {
 	
 	private Railway CurrentRailwaySegment;
 	private Railway PreviousRailwaySegment;
-	private Cart Pulls;
+	protected Cart Pulls;
 	
 	public MovingObject(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart) {
 		
