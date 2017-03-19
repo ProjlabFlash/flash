@@ -1,10 +1,10 @@
 package main;
 
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
@@ -26,11 +26,22 @@ public class Application {
 				
 				try {
 					
+					System.out.println("");
+					
 					int controlNumber = Integer.parseInt(input.readLine());
 					System.out.println(controlNumber);
+					
 					if (controlNumber == 0)
 						break;
 					
+					for (MenuItem item: items) {
+						if (item.id == controlNumber) {
+							
+							System.out.println("\n------------------\n");
+							item.run();
+							break;
+						}
+					}
 					
 					
 				} catch (NumberFormatException e) {
@@ -40,7 +51,6 @@ public class Application {
 					
 					e.printStackTrace();
 				}
-				
 			}
 		}
 		
