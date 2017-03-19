@@ -1,5 +1,6 @@
 package main;
 
+@SuppressWarnings("unused")
 public class Switch extends Railway {
 
 	private Railway CurrentStanding;

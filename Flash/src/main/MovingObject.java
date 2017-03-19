@@ -1,5 +1,6 @@
 package main;
 
+@SuppressWarnings("unused")
 public abstract class MovingObject {
 	
 	private Railway CurrentRailwaySegment;

@@ -1,5 +1,6 @@
 package main;
 
+@SuppressWarnings("unused")
 public class Cart extends MovingObject {
 
 	private Color color;
