@@ -13,9 +13,11 @@ public abstract class MovingObject {
 	
 	public void step(Railway toHere) {
 		CurrentRailwaySegment.setOnMe(null);
+		toHere.setOnMe(this);
+		if(Pulls != null) Pulls.step(CurrentRailwaySegment);
 	}
 	
 	public void crash() {
-		
+		Application.lose();
 	}
 }
