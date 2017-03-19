@@ -31,6 +31,8 @@ public class Application {
 					if (controlNumber == 0)
 						break;
 					
+					
+					
 				} catch (NumberFormatException e) {
 					
 					System.out.println("A megadott érték nem egy egész szám");
@@ -45,6 +47,8 @@ public class Application {
 		
 	}
 
+	
+	
 	protected abstract class MenuItem {
 		
 		public final int id;
