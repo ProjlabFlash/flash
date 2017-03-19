@@ -7,7 +7,7 @@ public abstract class MovingObject extends MetaData {
 	protected Cart Pulls;
 	
 	public MovingObject(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart) {
-		
+		railwaySegment.setOnMe(this);
 	}
 	
 	public void step(Railway toHere) {

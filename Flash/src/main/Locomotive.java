@@ -7,6 +7,7 @@ public class Locomotive extends MovingObject {
 	
 	public Locomotive(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart, int speed) {
 		super(railwaySegment, previousRailwaySegment, nextCart);
+		this.Speed = speed;
 	}
 	
 	public void move() {
