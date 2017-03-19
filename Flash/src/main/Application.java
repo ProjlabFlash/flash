@@ -13,13 +13,15 @@ public class Application {
 	
 	static private Logger logger = new Logger();
 	
+	static BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
+	
 	public static void main(String[] args) {
 		
 		System.out.println("hi");
 		
 		while(true) {
 			
-			BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
+
 			
 			//Menüpontok létrehozása
 			
@@ -80,7 +82,7 @@ public class Application {
 			this.name = name;
 		}
 		
-		protected abstract void run();
+		protected abstract void run() throws IOException;
 		
 	}
 	
@@ -88,7 +90,7 @@ public class Application {
 	protected class VonatLeptetes extends MenuItem {
 		
 		VonatLeptetes() {
-			super(1, "A vonat léptetése a sínen");
+			super(1, "A vonat leptetese a sinen");
 		}
 		
 		@Override
@@ -117,24 +119,79 @@ public class Application {
 	protected class Utkozes extends MenuItem {
 		
 		Utkozes() {
-			super(1, "");
+			super(2, "2 vonat utkozese");
 		}
 		
 		@Override
 		protected void run() {
 			
+			logger.setInit(true);
+			
+			Railway prevForL1 = new Railway(null);
+			Railway underL1 = new Railway(prevForL1);
+			Railway forCollision = new Railway(underL1);
+			Locomotive L1 = new Locomotive(underL1, prevForL1, null, 20);
+			Locomotive L2 = new Locomotive(forCollision, null, null, 2);
+			
+			prevForL1.insertNeighbour(underL1);
+			underL1.insertNeighbour(forCollision);
+			
+			logger.setInit(false);
+			
+			L1.move();
 		}
 	}
 	
 	protected class LeszallasMozdonyKocsi extends MenuItem {
 		
 		LeszallasMozdonyKocsi() {
-			super(1, "");
+			super(3, "Leszallas egy tetszoleges színu allomason ugy, hogy csak egy kocsit huz a vonat ami kek");
 		}
 		
 		@Override
-		protected void run() {
+		protected void run(){
 			
+			logger.setInit(true);
+			
+			Railway rWayAtStation = new Railway(null);
+			Railway rWayBeforeStation = new Railway(rWayAtStation);
+			Cart C = new Cart(rWayBeforeStation, null, null, Color.KEK, true);
+			Locomotive L = new Locomotive(rWayAtStation, rWayBeforeStation, C, 20);
+			
+			rWayAtStation.insertNeighbour(rWayBeforeStation);
+			
+			System.out.println("Milyen szinu legyen az allomas?");
+			System.out.println("1: Kek");
+			System.out.println("2: Piros");
+			
+			int control = 0;
+			
+			while (true) {
+				
+				
+				try {
+					control = Integer.parseInt(input.readLine());
+				} catch (NumberFormatException e) {
+					System.out.println("Helytelen bemenet, próbálja újra");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				if (control == 1 || control == 2) break;
+				System.out.println("Helytelen bemenet, próbálja újra");
+			}
+			
+			Station S;
+			if (control == 1) {
+				S = new Station(rWayAtStation, Color.KEK);
+			} else {
+				S = new Station(rWayBeforeStation, Color.PIROS);
+			}
+			
+			logger.setInit(false);
+			
+			L.ArrivedAtStation(S);
 		}
 	}
 	

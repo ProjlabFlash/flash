@@ -1,5 +1,5 @@
 package main;
 
 public enum Color {
-	KEK, ZOLD, SARGA
+	KEK, ZOLD, SARGA, PIROS
 }
