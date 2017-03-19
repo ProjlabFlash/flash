@@ -1,5 +1,6 @@
 package main;
 
+@SuppressWarnings("unused")
 public class BuildingSpot extends Railway {
 
 	private Railway OldThisNeighbour;

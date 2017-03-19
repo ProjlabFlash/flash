@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class Railway {
 
 	protected ArrayList<Railway> ThisNeighbour = new ArrayList<>();
@@ -19,20 +20,18 @@ public class Railway {
 	}
 	
 	public void setOnMe(MovingObject OnMe) {
-		
+		this.OnMe = OnMe; 
 	}
 	
 	public ArrayList<Railway> getThisNeighbour() {
-		//atmenetileg
-		return null;
+		return ThisNeighbour;
 	}
 	
 	public ArrayList<Railway> getThatNeighbour() {
-		//atmenetileg
-		return null;
+		return ThatNeighbour;
 	}
 	
 	public void insertNeighbour(Railway newNeighbour) {
-		
+		//atmenetileg ures
 	}
 }
