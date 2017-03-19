@@ -10,10 +10,13 @@ public class Locomotive extends MovingObject {
 	}
 	
 	public void move() {
-		
+		Railway nextRailwaySegment = CurrentRailwaySegment.next(PreviousRailwaySegment);
+		step(nextRailwaySegment);
 	}
 	
 	public void ArrivedAtStation(Station station) {
-		
+		if(Pulls.colorCheck(station) == true) {
+			Application.win();
+		}
 	}
 }
