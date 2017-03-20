@@ -16,6 +16,9 @@ public abstract class MovingObject extends MetaData {
 	 */
 	public MovingObject(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart) {
 		railwaySegment.setOnMe(this);
+		this.CurrentRailwaySegment = railwaySegment;
+		this.PreviousRailwaySegment = previousRailwaySegment;
+		this.Pulls = nextCart;
 	}
 	
 	/**

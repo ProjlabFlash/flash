@@ -9,9 +9,10 @@ import java.util.Scanner;
 
 public class Application {
 
-	
+	//Tárolja a lehetséges menüpontokat
 	static private List<MenuItem> items = new ArrayList<MenuItem>();
 	
+	//Az obejktumok között történõ függvényhívásokat közvetíti a felhasználó felé.
 	static public Logger logger = new Logger();
 	
 	/**
@@ -20,28 +21,44 @@ public class Application {
 	 */
 	public static void main(String[] args) {
 		
-		System.out.println("hi");
-		
+		/**
+		 * A program fõ hurka amiben a felhasználót kérdezi melyik tesztesetet szeretné látni, majd azt végre is hajtja
+		 */
 		while(true) {
 			
 			BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
 			
-			//Menüpontok létrehozása
+			//A menüelemek listához adása
+			items.add(new VonatLeptetes());
+			items.add(new Utkozes());
+			items.add(new LeszallasMozdonyKocsi());
+			items.add(new LeszallasMozdonyUresJo());
+			items.add(new LeszallasMozdonyUresRossz());
+			items.add(new LeszallasJoJoRossz());
+			items.add(new Valtas());
+			items.add(new AlagutEpites());
+			items.add(new AlagutRombolas());
+			items.add(new ValtasVonattal());
 			
-			
+			int controlNumber = 1;
+			//Beolvasási ciklus... Amíg nem kaptunk egy megfelelõ
 			while(true) {
 				
 				try {
 					
-					System.out.println("Írja be a megfelelõ menüponthoz tartozó számot annak kiválasztásához...");
+					// A felhasználónak kiírt üzenet. Tartalmaz minden menüpontról egy leírást.
+					System.out.println("Írja be a megfelelõ menüponthoz tartozó számot annak kiválasztásához, vagy 0-át a kilépéshez...");
 					for (MenuItem item: items)
 						System.out.println(item.id + ": " + item.name);
 					
-					int controlNumber = Integer.parseInt(input.readLine());
+					// A felhasználó válaszának beolvasása
+					controlNumber = Integer.parseInt(input.readLine());
 					
+					//Kilépés a programból
 					if (controlNumber == 0)
 						break;
 					
+					//A megfelelõ menüponthoz tartozó objektum kiválaszása
 					for (MenuItem item: items) {
 						if (item.id == controlNumber) {
 							
@@ -50,8 +67,8 @@ public class Application {
 							break;
 						}
 					}
-					
-					
+					System.out.println("nincs ilyen menüpont");
+		
 				} catch (NumberFormatException e) {
 					
 					System.out.println("A megadott érték nem egy egész szám");
@@ -60,6 +77,7 @@ public class Application {
 					e.printStackTrace();
 				}
 			}
+			if (controlNumber == 0) break;
 		}
 		
 		
@@ -70,18 +88,32 @@ public class Application {
 	 * Gyõzelem esetén (azaz, ha minden kocsi kiürült) a következõ pályát tölti be.
 	 */
 	public static void win() {
-		
+		logger.enter(new Application(), "win", null);
+		logger.exit(null);
 	}
 	
 	/**
 	 * Vereség esetén a játékmenet leállítását kezeli.
 	 */
 	public static void lose() {
-		
+		logger.enter(new Application(), "lose", null);
+		logger.exit(null);
 	}
 	
+	/**
+	 * A logger általi kiiratáshoz szükséges.
+	 */
+	public String toString() {
+		return "Application";
+	}
 	
-	protected abstract class MenuItem {
+	/**
+	 * Az egyes menüpontok adatait fogja össze.
+	 * Tartalmaz egy számot ami alapján lehet rá hivatkoznia a felhasználónak, egy rövid leírást,
+	 * és egy függvényt ami az adott menüponthoz tartozó teszteset, és ezt fogja össze egy osztállyá, 
+	 * amibõl aztán leszármazással lehet menüpontokat létrehozni.
+	 */
+	protected static abstract class MenuItem {
 		
 		public final int id;
 		public final String name;
@@ -96,7 +128,7 @@ public class Application {
 	}
 	
 	
-	protected class VonatLeptetes extends MenuItem {
+	protected static class VonatLeptetes extends MenuItem {
 		
 		VonatLeptetes() {
 			super(1, "A vonat léptetése a sínen");
@@ -143,7 +175,7 @@ public class Application {
 		}
 	}
 	
-	protected class Utkozes extends MenuItem {
+	protected static class Utkozes extends MenuItem {
 		
 		Utkozes() {
 			super(2, "Két mozdony ütközése");
@@ -184,7 +216,7 @@ public class Application {
 		}
 	}
 	
-	protected class LeszallasMozdonyKocsi extends MenuItem {
+	protected static class LeszallasMozdonyKocsi extends MenuItem {
 		
 		LeszallasMozdonyKocsi() {
 			super(3, "Leszállás egy kocsival");
@@ -244,7 +276,7 @@ public class Application {
 		}
 	}
 	
-	protected class LeszallasMozdonyUresJo extends MenuItem {
+	protected static class LeszallasMozdonyUresJo extends MenuItem {
 		
 		LeszallasMozdonyUresJo() {
 			super(4, "Leszállás egy üres vagon mögül.");
@@ -291,7 +323,7 @@ public class Application {
 		}
 	}
 	
-	protected class LeszallasMozdonyUresRossz extends MenuItem {
+	protected static class LeszallasMozdonyUresRossz extends MenuItem {
 		
 		LeszallasMozdonyUresRossz() {
 			super(5, "Lesázllási kísérlet. Üres vagont egy rossz követi.");
@@ -337,10 +369,10 @@ public class Application {
 		}
 	}
 	
-	protected class LeszallasJoJoRossz extends MenuItem {
+	protected static class LeszallasJoJoRossz extends MenuItem {
 		
 		LeszallasJoJoRossz() {
-			super(6, "Lesázllás két vagonról.");
+			super(6, "Lesázllás két vagonról, amit utána egy rossz színû vagon követ.");
 		}
 		
 		@Override
@@ -389,7 +421,7 @@ public class Application {
 		}
 	}
 	
-	protected class Valtas extends MenuItem {
+	protected static class Valtas extends MenuItem {
 		
 		Valtas() {
 			super(7, "Váltás, majd azon áthaladás.");
@@ -441,7 +473,7 @@ public class Application {
 		}
 	}
 	
-	protected class AlagutEpites extends MenuItem {
+	protected static class AlagutEpites extends MenuItem {
 		
 		AlagutEpites() {
 			super(8, "Alagútépítés");
@@ -488,7 +520,7 @@ public class Application {
 		}
 	}
 	
-	protected class AlagutRombolas extends MenuItem {
+	protected static class AlagutRombolas extends MenuItem {
 		
 		AlagutRombolas() {
 			super(9, "Alagút lerombolása");
@@ -541,7 +573,7 @@ public class Application {
 		}
 	}
 	
-	protected class ValtasVonattal extends MenuItem {
+	protected static class ValtasVonattal extends MenuItem {
 		
 		ValtasVonattal() {
 			super(10, "Váltlás vonatal");
