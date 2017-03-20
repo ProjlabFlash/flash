@@ -28,6 +28,8 @@ public class Locomotive extends MovingObject {
 		
 		Railway nextRailwaySegment = CurrentRailwaySegment.next(PreviousRailwaySegment);
 		step(nextRailwaySegment);
+		PreviousRailwaySegment = CurrentRailwaySegment;
+		CurrentRailwaySegment = nextRailwaySegment;
 		
 		//logger exit
 		Application.logger.exit("");

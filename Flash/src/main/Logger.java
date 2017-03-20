@@ -26,6 +26,7 @@ public class Logger {
 		line=line.concat(fName);
 		line=line.concat("(");
 		
+		if (params != null)
 		for(int i=0;i<params.size();i++)
 		{
 			if(params.get(i)==null) line=line.concat("null");
@@ -68,7 +69,7 @@ public class Logger {
 		}
 		line=line.concat("<-");
 		line=line.concat("return: ");
-		if(re!=null || re!="") line=line.concat(re);
+		if(re!=null || re!=null) line=line.concat(re);
 		System.out.println(line);
 		line="";
 		}

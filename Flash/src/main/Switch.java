@@ -16,6 +16,7 @@ public class Switch extends Railway {
 	public Switch(Railway defaultStanding, Railway previousRailway) {
 		super(previousRailway);
 		CurrentStanding = defaultStanding;
+		ThisNeighbour.add(previousRailway);
 	}
 	
 	/**
@@ -33,5 +34,24 @@ public class Switch extends Railway {
 		
 		//logger exit
 		Application.logger.exit("");
+	}
+	
+	public Railway next(Railway previousRailway) {
+		//logger enter
+		ArrayList<Object> paramlist=new ArrayList<Object>();
+		paramlist.add(previousRailway);
+		Application.logger.enter(this, "next", paramlist);
+		
+		Railway result = null;
+		
+		if (ThatNeighbour.contains(previousRailway))
+			result = ThisNeighbour.get(0);
+		else if (ThisNeighbour.contains(previousRailway))
+			result = CurrentStanding;
+		if (result != null)
+			Application.logger.exit(result.toString());
+		else 
+			Application.logger.exit(null);
+		return result;
 	}
 }

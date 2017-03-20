@@ -33,7 +33,10 @@ public class BuildingSpot extends Railway {
 		
 		if (thisNewNeighbour != null) {
 
-			OldThisNeighbour = ThisNeighbour.get(0);
+			if (ThisNeighbour.size() != 0)
+				OldThisNeighbour = ThisNeighbour.get(0);
+			else if (ThatNeighbour.size() > 1)
+				OldThisNeighbour = ThatNeighbour.get(1);
 			ThisNeighbour = thisNewNeighbour;
 		} else {
 			ThisNeighbour = new ArrayList<Railway>();

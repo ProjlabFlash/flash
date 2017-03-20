@@ -67,7 +67,6 @@ public class Application {
 							break;
 						}
 					}
-					System.out.println("nincs ilyen menüpont");
 		
 				} catch (NumberFormatException e) {
 					
@@ -438,10 +437,12 @@ public class Application {
 			 * Inicializálja az Valtas szekvenciáját
 			 */
 			Railway R1 = new Railway(null);
-			Switch SW = new Switch(null, R1);
-			Railway R2 = new Railway(SW);
+			Switch SW;
+			Railway R2 = new Railway(null);
+			SW = new Switch(R2, R1);
 			Railway R3 = new Railway(SW);
 			R1.insertNeighbour(SW);
+			R2.insertNeighbour(SW);
 			SW.insertNeighbour(R2);
 			SW.insertNeighbour(R3);
 			SW.switchTo(R2);
@@ -561,6 +562,8 @@ public class Application {
 			bs1.setName("bs1");
 			bs2.setName("bs2");
 			T.setName("T");
+			
+			T.build(bs1, bs2);
 			/** 
 			 * 	Beállítja a Logger-t tesztelései módba
 			 *	A Logger ilyenkor ír standard outputra
