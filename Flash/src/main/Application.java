@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
 
@@ -140,7 +141,22 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+		Railway rwayAtStation = new Railway(null);
+		Railway rwayBeforeStation = new Railway(rwayAtStation);
+		rwayBeforeStation.insertNeighbour(rwayAtStation);
+		Cart C = new Cart(rwayBeforeStation, null,null,Color.KEK,true);
+		Locomotive L = new Locomotive(rwayAtStation,rwayBeforeStation, C, 10);
+		System.out.println("Leszállhatnak az utasok? (y/n)");
+		Scanner scan = new Scanner(System.in);
+		Character leszall = scan.next().charAt(0);
+		if(leszall.equals('y'))
+		{
+			Station S = new Station(rwayAtStation, Color.KEK);
+		}
+		else if (leszall.equals('n'))
+		{
+			Station S = new Station(rwayAtStation, Color.PIROS);
+		}
 		}
 	}
 	
