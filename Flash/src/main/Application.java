@@ -123,6 +123,7 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
 			Railway prevForL1 =new Railway(null);
 			Railway underL1 = new Railway(prevForL1);
 			Railway forCollision = new Railway(underL1);
@@ -130,6 +131,9 @@ public class Application {
 			underL1.insertNeighbour(forCollision);
 			Locomotive L1 = new Locomotive(underL1,prevForL1, null, 10);
 			Locomotive L2 = new Locomotive(forCollision, null, null, 0);
+			
+			logger.setInit(false);
+			L1.move();
 		}
 	}
 	
@@ -141,6 +145,7 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
 		Railway rwayAtStation = new Railway(null);
 		Railway rwayBeforeStation = new Railway(rwayAtStation);
 		rwayBeforeStation.insertNeighbour(rwayAtStation);
@@ -152,11 +157,17 @@ public class Application {
 		if(leszall.equals('y'))
 		{
 			Station S = new Station(rwayAtStation, Color.KEK);
+			logger.setInit(false);
+			L.ArrivedAtStation(S);
+			
 		}
 		else if (leszall.equals('n'))
 		{
 			Station S = new Station(rwayAtStation, Color.PIROS);
+			logger.setInit(false);
+			L.ArrivedAtStation(S);
 		}
+		logger.setInit(false);
 		}
 	}
 	
@@ -168,6 +179,7 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
 			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
@@ -178,6 +190,9 @@ public class Application {
 			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
 			Station S = new Station(rwayAtStation, Color.KEK);
 			rwayAtStation.setStation(S);
+			
+			logger.setInit(false);
+			L.ArrivedAtStation(S);
 		}
 	}
 	
@@ -189,6 +204,7 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
 			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
@@ -199,17 +215,21 @@ public class Application {
 			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
 			Station S = new Station(rwayAtStation, Color.KEK);
 			rwayAtStation.setStation(S);
+			
+			logger.setInit(false);
+			L.ArrivedAtStation(S);
 		}
 	}
 	
 	protected class LeszallasJoJoRossz extends MenuItem {
 		
 		LeszallasJoJoRossz() {
-			super(1, "");
+			super(1, "Lesázllás két vagonról.");
 		}
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
 			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
@@ -221,55 +241,124 @@ public class Application {
 			Cart ReadyForLeave_1 = new Cart(rway2BeoreStation, rway3BeoreStation, WrongColoredFull, Color.KEK, true);
 			Cart ReadyForLeave_2 = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyForLeave_1, Color.KEK, true);
 			Station S = new Station(rwayAtStation, Color.KEK);
+			
+			logger.setInit(false);
 			rwayAtStation.setStation(S);
+			
 		}
 	}
 	
 	protected class Valtas extends MenuItem {
 		
 		Valtas() {
-			super(1, "");
+			super(1, "Váltás");
 		}
 		
 		@Override
 		protected void run() {
-			
+			logger.setInit(true);
+			Railway R1 = new Railway(null);
+			Switch SW = new Switch(null, R1);
+			Railway R2 = new Railway(SW);
+			Railway R3 = new Railway(SW);
+			R1.insertNeighbour(SW);
+			SW.insertNeighbour(R2);
+			SW.insertNeighbour(R3);
+			SW.switchTo(R2);
+			System.out.println("Áthaladjon a vonat?");
+			logger.setInit(false);
+			Scanner scan = new Scanner(System.in);
+			Character valt = scan.next().charAt(0);
+			if(valt.equals('y'))
+			{
+				SW.switchTo(R3);
+			}
+			logger.setInit(true);
+			Locomotive L = new Locomotive(SW,R1, null,0);
+	
+			logger.setInit(false);
+
 		}
 	}
 	
 	protected class AlagutEpites extends MenuItem {
 		
 		AlagutEpites() {
-			super(1, "");
+			super(1, "Alagútépítés");
 		}
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
+			Railway r11 = new Railway(null);
+			BuildingSpot bs1 = new BuildingSpot(r11);
+			Railway r12 = new Railway(bs1);
+			Railway r21 = new Railway(null);
+			BuildingSpot bs2 = new BuildingSpot(r21);
+			Railway r22 = new Railway(bs2);
+			Tunnel T = new Tunnel();
+			r11.insertNeighbour(bs1);
+			bs1.insertNeighbour(r12);
+			r21.insertNeighbour(bs2);
+			bs2.insertNeighbour(r22);
 			
+			logger.setInit(false);
+			T.build(bs1, bs2);
 		}
 	}
 	
 	protected class AlagutRombolas extends MenuItem {
 		
 		AlagutRombolas() {
-			super(1, "");
+			super(1, "Alagút lerombolása");
 		}
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
+			Railway r11 = new Railway(null);
+			BuildingSpot bs1 = new BuildingSpot(r11);
+			Railway r12 = new Railway(bs1);
+			Railway r21 = new Railway(null);
+			BuildingSpot bs2 = new BuildingSpot(r21);
+			Railway r22 = new Railway(bs2);
+			Tunnel T = new Tunnel();
+			r11.insertNeighbour(bs1);
+			bs1.insertNeighbour(r12);
+			r21.insertNeighbour(bs2);
+			bs2.insertNeighbour(r22);
+			ArrayList<Railway> swap21 = r21.getThisNeighbour();
+			ArrayList<Railway> swap22 = r22.getThisNeighbour();
+			bs1.setNewNeighbours(swap21, swap22);
+			ArrayList<Railway> swap11 = r11.getThisNeighbour();
+			ArrayList<Railway> swap12 = r12.getThisNeighbour();
+			bs1.setNewNeighbours(swap11, swap12);
 			
+			logger.setInit(false);
+			T.destroy();
 		}
 	}
 	
 	protected class ValtasVonattal extends MenuItem {
 		
 		ValtasVonattal() {
-			super(1, "");
+			super(1, "Váltlás vonatal");
 		}
 		
 		@Override
 		protected void run() {
+			logger.setInit(true);
+			Railway next = new Railway(null);
+			Switch current = new Switch(null, next);
+			Railway prev = new Railway(current);
+			Railway R3 = new Railway(current);
+			next.insertNeighbour(current);
+			current.insertNeighbour(prev);
+			current.insertNeighbour(R3);
+			Locomotive L = new Locomotive(current, prev, null, 10);
 			
+			logger.setInit(false);
+			L.move();
 		}
 	}
 
