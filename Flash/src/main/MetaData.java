@@ -13,6 +13,7 @@ public abstract class MetaData {
 	
 	/**
 	 * Visszaadja az objektum nevét.
+	 * @return Az objektum neve
 	 */
 	public String toString() {
 		return name;
