@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
 
@@ -13,15 +14,13 @@ public class Application {
 	
 	static public Logger logger = new Logger();
 	
-	static BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
-	
 	public static void main(String[] args) {
 		
 		System.out.println("hi");
 		
 		while(true) {
 			
-
+			BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
 			
 			//Menüpontok létrehozása
 			
@@ -82,7 +81,7 @@ public class Application {
 			this.name = name;
 		}
 		
-		protected abstract void run() throws IOException;
+		protected abstract void run();
 		
 	}
 	
@@ -90,7 +89,7 @@ public class Application {
 	protected class VonatLeptetes extends MenuItem {
 		
 		VonatLeptetes() {
-			super(1, "A vonat leptetese a sinen");
+			super(1, "A vonat léptetése a sínen");
 		}
 		
 		@Override
@@ -119,103 +118,87 @@ public class Application {
 	protected class Utkozes extends MenuItem {
 		
 		Utkozes() {
-			super(2, "2 vonat utkozese");
+			super(1, "Két mozdony ütközése");
 		}
 		
 		@Override
 		protected void run() {
-			
-			logger.setInit(true);
-			
-			Railway prevForL1 = new Railway(null);
+			Railway prevForL1 =new Railway(null);
 			Railway underL1 = new Railway(prevForL1);
 			Railway forCollision = new Railway(underL1);
-			Locomotive L1 = new Locomotive(underL1, prevForL1, null, 20);
-			Locomotive L2 = new Locomotive(forCollision, null, null, 2);
-			
 			prevForL1.insertNeighbour(underL1);
 			underL1.insertNeighbour(forCollision);
-			
-			logger.setInit(false);
-			
-			L1.move();
+			Locomotive L1 = new Locomotive(underL1,prevForL1, null, 10);
+			Locomotive L2 = new Locomotive(forCollision, null, null, 0);
 		}
 	}
 	
 	protected class LeszallasMozdonyKocsi extends MenuItem {
 		
 		LeszallasMozdonyKocsi() {
-			super(3, "Leszallas egy tetszoleges színu allomason ugy, hogy csak egy kocsit huz a vonat ami kek");
+			super(1, "Leszállás");
 		}
 		
 		@Override
-		protected void run(){
-			
-			logger.setInit(true);
-			
-			Railway rWayAtStation = new Railway(null);
-			Railway rWayBeforeStation = new Railway(rWayAtStation);
-			Cart C = new Cart(rWayBeforeStation, null, null, Color.KEK, true);
-			Locomotive L = new Locomotive(rWayAtStation, rWayBeforeStation, C, 20);
-			
-			rWayAtStation.insertNeighbour(rWayBeforeStation);
-			
-			System.out.println("Milyen szinu legyen az allomas?");
-			System.out.println("1: Kek");
-			System.out.println("2: Piros");
-			
-			int control = 0;
-			
-			while (true) {
-				
-				
-				try {
-					control = Integer.parseInt(input.readLine());
-				} catch (NumberFormatException e) {
-					System.out.println("Helytelen bemenet, próbálja újra");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				if (control == 1 || control == 2) break;
-				System.out.println("Helytelen bemenet, próbálja újra");
-			}
-			
-			Station S;
-			if (control == 1) {
-				S = new Station(rWayAtStation, Color.KEK);
-			} else {
-				S = new Station(rWayBeforeStation, Color.PIROS);
-			}
-			
-			logger.setInit(false);
-			
-			L.ArrivedAtStation(S);
+		protected void run() {
+		Railway rwayAtStation = new Railway(null);
+		Railway rwayBeforeStation = new Railway(rwayAtStation);
+		rwayBeforeStation.insertNeighbour(rwayAtStation);
+		Cart C = new Cart(rwayBeforeStation, null,null,Color.KEK,true);
+		Locomotive L = new Locomotive(rwayAtStation,rwayBeforeStation, C, 10);
+		System.out.println("Leszállhatnak az utasok? (y/n)");
+		Scanner scan = new Scanner(System.in);
+		Character leszall = scan.next().charAt(0);
+		if(leszall.equals('y'))
+		{
+			Station S = new Station(rwayAtStation, Color.KEK);
+		}
+		else if (leszall.equals('n'))
+		{
+			Station S = new Station(rwayAtStation, Color.PIROS);
+		}
 		}
 	}
 	
 	protected class LeszallasMozdonyUresJo extends MenuItem {
 		
 		LeszallasMozdonyUresJo() {
-			super(1, "");
+			super(1, "Leszállás egy üres vagon mögül.");
 		}
 		
 		@Override
 		protected void run() {
-			
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			rwayAtStation.insertNeighbour(rwayBeforeStation);
+			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
+			Cart ReadyforLeaveCart = new Cart(rway2BeoreStation,null, null, Color.KEK,true);
+			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyforLeaveCart, Color.KEK, false);
+			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
+			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
 		}
 	}
 	
 	protected class LeszallasMozdonyUresRossz extends MenuItem {
 		
 		LeszallasMozdonyUresRossz() {
-			super(1, "");
+			super(1, "Lesázllási kísérlet. Üres vagont egy rossz  követi.");
 		}
 		
 		@Override
 		protected void run() {
-			
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			rwayAtStation.insertNeighbour(rwayBeforeStation);
+			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
+			Cart WrongColoredFull = new Cart(rway2BeoreStation,null, null, Color.PIROS,true);
+			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeoreStation, WrongColoredFull, Color.KEK, false);
+			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
+			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
 		}
 	}
 	
@@ -227,7 +210,18 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			Railway rway3BeoreStation = new Railway(rway2BeoreStation);
+			rwayAtStation.insertNeighbour(rwayBeforeStation);
+			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
+			rway2BeoreStation.insertNeighbour(rway3BeoreStation);
+			Cart WrongColoredFull = new Cart(rway3BeoreStation, null, null, Color.PIROS, true);
+			Cart ReadyForLeave_1 = new Cart(rway2BeoreStation, rway3BeoreStation, WrongColoredFull, Color.KEK, true);
+			Cart ReadyForLeave_2 = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyForLeave_1, Color.KEK, true);
+			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
 		}
 	}
 	
