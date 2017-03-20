@@ -14,6 +14,10 @@ public class Application {
 	
 	static public Logger logger = new Logger();
 	
+	/**
+	 * Az egész program belépési pontja
+	 * @param args pl.: parancssori argumentumok
+	 */
 	public static void main(String[] args) {
 		
 		System.out.println("hi");
@@ -61,11 +65,16 @@ public class Application {
 	}
 
 	
-	
+	/**
+	 * Gyõzelem esetén (azaz, ha minden kocsi kiürült) a következõ pályát tölti be.
+	 */
 	public static void win() {
 		
 	}
 	
+	/**
+	 * Vereség esetén a játékmenet leállítását kezeli.
+	 */
 	public static void lose() {
 		
 	}
