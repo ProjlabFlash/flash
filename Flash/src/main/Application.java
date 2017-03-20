@@ -273,6 +273,7 @@ public class Application {
 			rwayBeforeStation.setName("rwayBeforeStation");
 			rway2BeforeStation.setName("rway2BeforeStation");
 			WrongColoredFull.setName("WrongColoredFull");
+			EmptyCart.setName("EmptyCart");
 			
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
