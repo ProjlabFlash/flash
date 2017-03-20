@@ -136,7 +136,7 @@ public class Application {
 	protected class LeszallasMozdonyKocsi extends MenuItem {
 		
 		LeszallasMozdonyKocsi() {
-			super(1, "");
+			super(1, "Leszállás");
 		}
 		
 		@Override
@@ -168,7 +168,12 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			rwayAtStation.insertNeighbour(rwayBeforeStation);
+			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
+			Cart ReadyforLeaveCart = new Cart(rway2BeoreStation,null, null, Color.KEK,true);
 		}
 	}
 	
