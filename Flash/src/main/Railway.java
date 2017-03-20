@@ -12,15 +12,34 @@ public class Railway extends MetaData {
 	
 	public Railway(Railway previousRailway) {
 		
+		if (previousRailway != null)
+			ThisNeighbour.add(previousRailway);
 	}
 	
 	public Railway next(Railway previousRailway) {
-		//atmenetileg
+		if (previousRailway == null) {
+			
+			if (ThisNeighbour.size() != 0) return ThisNeighbour.get(0);
+			if (ThatNeighbour.size() != 0) return ThatNeighbour.get(0);
+			return null;
+		}
+		
+		if (ThisNeighbour.contains(previousRailway)) {
+			
+			if (ThatNeighbour.size() == 0) return null;
+			return ThatNeighbour.get(0);
+		}
+		
+		if (ThatNeighbour.contains(previousRailway)) {
+			
+			if (ThisNeighbour.size() == 0) return null;
+			return ThisNeighbour.get(0);
+		}
 		return null;
 	}
 	
 	public void setOnMe(MovingObject OnMe) {
-		this.OnMe = OnMe; 
+		this.OnMe = OnMe;
 	}
 	
 	public ArrayList<Railway> getThisNeighbour() {
@@ -32,6 +51,6 @@ public class Railway extends MetaData {
 	}
 	
 	public void insertNeighbour(Railway newNeighbour) {
-		//atmenetileg ures
+		ThatNeighbour.add(newNeighbour);
 	}
 }
