@@ -33,14 +33,11 @@ public class Application {
 				
 				try {
 					
-					System.out.println("");
+					System.out.println("Írja be a megfelelõ menüponthoz tartozó számot annak kiválasztásához...");
+					for (MenuItem item: items)
+						System.out.println(item.id + ": " + item.name);
 					
 					int controlNumber = Integer.parseInt(input.readLine());
-					System.out.println(controlNumber);
-					
-					ArrayList<String> teszt = new ArrayList<String>();
-					teszt.add("salyt");
-					System.out.println(teszt.toString());
 					
 					if (controlNumber == 0)
 						break;
@@ -107,9 +104,14 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
-			
+			/**
+			 * Inicializálja az VonatLeptetes szekvenciáját
+			 */
 			Railway underC2 = new Railway(null);
 			Railway underC1 = new Railway(underC2);
 			Railway underL = new Railway(underC1);
@@ -125,13 +127,18 @@ public class Application {
 			C2.setName("C2");
 			C1.setName("C1");
 			L.setName("L");
-			
+
 			underC2.insertNeighbour(underC1);
 			underC1.insertNeighbour(underL);
 			underL.insertNeighbour(nextForL);
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
-			
+			/**
+			 * Elindítja az VonatLeptetes szekvenciáját
+			 */
 			L.move();
 		}
 	}
@@ -144,9 +151,14 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
-			
+			/**
+			 * Inicializálja az Utkozes szekvenciáját
+			 */
 			Railway prevForL1 =new Railway(null);
 			Railway underL1 = new Railway(prevForL1);
 			Railway forCollision = new Railway(underL1);
@@ -160,9 +172,14 @@ public class Application {
 			forCollision.setName("forCollision");
 			L1.setName("L1");
 			L2.setName("L2");
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
-			
+			/**
+			 * Elindítja az Utkozes szekvenciáját
+			 */
 			L1.move();
 		}
 	}
@@ -175,14 +192,19 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
-		logger.setInit(true);
-		
-		Railway rwayAtStation = new Railway(null);
-		Railway rwayBeforeStation = new Railway(rwayAtStation);
-		rwayBeforeStation.insertNeighbour(rwayAtStation);
-		Cart C = new Cart(rwayBeforeStation, null,null,Color.KEK,true);
-		Locomotive L = new Locomotive(rwayAtStation,rwayBeforeStation, C, 10);
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */	
+			logger.setInit(true);
+			/**
+			 * Inicializálja az LeszallasMozdonyKocsi szekvenciáját
+			 */
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			rwayBeforeStation.insertNeighbour(rwayAtStation);
+			Cart C = new Cart(rwayBeforeStation, null,null,Color.KEK,true);
+			Locomotive L = new Locomotive(rwayAtStation,rwayBeforeStation, C, 10);
 		
 		rwayAtStation.setName("rwayAtStation");
 		rwayBeforeStation.setName("rwayBeforeStation");
@@ -193,22 +215,27 @@ public class Application {
 		Scanner scan = new Scanner(System.in);
 		Character leszall = scan.next().charAt(0);
 		if(leszall.equals('y'))
-		{
+			{
 			Station S = new Station(rwayAtStation, Color.KEK);
 			S.setName("S");
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
 			
-		}
-		else if (leszall.equals('n'))
-		{
+		} else if (leszall.equals('n'))
+			{
 			Station S = new Station(rwayAtStation, Color.PIROS);
 			S.setName("S");
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
 		}
-		
-		logger.setInit(false);
 		}
 	}
 	
@@ -220,7 +247,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			
 			Railway rwayAtStation = new Railway(null);
@@ -241,7 +271,10 @@ public class Application {
 			EmptyCart.setName("EmptyCart");
 			L.setName("L");
 			S.setName("S");
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
 		}
@@ -255,7 +288,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			
 			Railway rwayAtStation = new Railway(null);
@@ -274,7 +310,10 @@ public class Application {
 			rway2BeforeStation.setName("rway2BeforeStation");
 			WrongColoredFull.setName("WrongColoredFull");
 			EmptyCart.setName("EmptyCart");
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
 		}
@@ -288,6 +327,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
@@ -300,7 +343,10 @@ public class Application {
 			Cart ReadyForLeave_1 = new Cart(rway2BeoreStation, rway3BeoreStation, WrongColoredFull, Color.KEK, true);
 			Cart ReadyForLeave_2 = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyForLeave_1, Color.KEK, true);
 			Station S = new Station(rwayAtStation, Color.KEK);
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			rwayAtStation.setStation(S);
 			
@@ -315,6 +361,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			Railway R1 = new Railway(null);
 			Switch SW = new Switch(null, R1);
@@ -348,6 +398,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			Railway r11 = new Railway(null);
 			BuildingSpot bs1 = new BuildingSpot(r11);
@@ -360,7 +414,10 @@ public class Application {
 			bs1.insertNeighbour(r12);
 			r21.insertNeighbour(bs2);
 			bs2.insertNeighbour(r22);
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			T.build(bs1, bs2);
 		}
@@ -374,6 +431,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			Railway r11 = new Railway(null);
 			BuildingSpot bs1 = new BuildingSpot(r11);
@@ -392,7 +453,10 @@ public class Application {
 			ArrayList<Railway> swap11 = r11.getThisNeighbour();
 			ArrayList<Railway> swap12 = r12.getThisNeighbour();
 			bs1.setNewNeighbours(swap11, swap12);
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			T.destroy();
 		}
@@ -406,6 +470,10 @@ public class Application {
 		
 		@Override
 		protected void run() {
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			logger.setInit(true);
 			Railway next = new Railway(null);
 			Switch current = new Switch(null, next);
@@ -415,7 +483,10 @@ public class Application {
 			current.insertNeighbour(prev);
 			current.insertNeighbour(R3);
 			Locomotive L = new Locomotive(current, prev, null, 10);
-			
+			/** 
+			 * 	Beállítja a Logger-t tesztelései módba
+			 *	A Logger ilyenkor ír standard outputra
+			 */
 			logger.setInit(false);
 			L.move();
 		}
