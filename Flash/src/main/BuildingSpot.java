@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class BuildingSpot extends Railway {
-
+	
 	private Railway OldThisNeighbour;
 	private Railway OldThatNeighbour;
 	
@@ -25,13 +25,17 @@ public class BuildingSpot extends Railway {
 	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
 		//logger enter
 		ArrayList<Object> paramlist=new ArrayList<Object>();
-		Object[] items1 = thisNewNeighbour.toArray();
+		//Elavult
+		/**Object[] items1 = thisNewNeighbour.toArray();
 		Object[] items2 = thatNewNeighbour.toArray();
 		
 		for(Object item: items1)
 			paramlist.add(item);
 		for(Object item: items2)
-			paramlist.add(item);
+			paramlist.add(item);*/
+		
+		paramlist.add(thisNewNeighbour);
+		paramlist.add(thatNewNeighbour);
 		
 		Application.logger.enter(this,"setNewNeighbours", paramlist);
 		
