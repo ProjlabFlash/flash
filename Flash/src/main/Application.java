@@ -12,7 +12,7 @@ public class Application {
 	
 	static private List<MenuItem> items = new ArrayList<MenuItem>();
 	
-	static private Logger logger = new Logger();
+	static public Logger logger = new Logger();
 	
 	public static void main(String[] args) {
 		
