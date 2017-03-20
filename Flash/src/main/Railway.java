@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
-public class Railway {
+public class Railway extends MetaData{
 
 	protected ArrayList<Railway> ThisNeighbour = new ArrayList<>();
 	protected ArrayList<Railway> ThatNeighbour = new ArrayList<>();
