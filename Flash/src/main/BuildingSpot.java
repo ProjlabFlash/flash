@@ -13,6 +13,12 @@ public class BuildingSpot extends Railway {
 	}
 	
 	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
+		//logger enter
+		ArrayList<Object> paramlist=new ArrayList<Object>();
+		paramlist.add(thisNewNeighbour);
+		paramlist.add(thatNewNeighbour);
+		Application.logger.enter(this,"setNewNeighbours", paramlist);
+		
 		
 		if (thisNewNeighbour != null) {
 
@@ -32,5 +38,8 @@ public class BuildingSpot extends Railway {
 			ThatNeighbour = new ArrayList<Railway>();
 			ThisNeighbour.add(OldThisNeighbour);
 		}
+		
+		//logger exit
+		Application.logger.exit("");
 	}
 }
