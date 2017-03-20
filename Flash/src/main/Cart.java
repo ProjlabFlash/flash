@@ -32,10 +32,11 @@ public class Cart extends MovingObject {
 		if(station.getColor().equals(color)) leaveTheTrain(station);
 		if(Passengers == false && Pulls != null) {
 			
-			//logger exit
-			Application.logger.exit("???");
+			boolean result = Pulls.colorCheck(station);
 			
-			return Pulls.colorCheck(station);
+			//logger exit
+			Application.logger.exit(String.valueOf(result));
+			return result;
 		}
 		if(Passengers == false && Pulls == null) {
 			
