@@ -27,7 +27,8 @@ public class Logger {
 		
 		for(int i=0;i<params.size();i++)
 		{
-			line=line.concat(params.get(i).toString());
+			if(params.get(i)==null) line=line.concat("null");
+			else line=line.concat(params.get(i).toString());
 			if(params.size()!=(i+1)) line=line.concat(",");
 		}
 		
