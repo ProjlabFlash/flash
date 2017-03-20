@@ -13,6 +13,7 @@ public class Switch extends Railway {
 	 */
 	public Switch(Railway defaultStanding, Railway previousRailway) {
 		super(previousRailway);
+		CurrentStanding = defaultStanding;
 	}
 	
 	/**
@@ -20,6 +21,7 @@ public class Switch extends Railway {
 	 * @param nextStanding A kapott sín.
 	 */
 	public void switchTo(Railway nextStanding) {
-		
+		if (ThisNeighbour.contains(nextStanding) || ThatNeighbour.contains(nextStanding))
+			CurrentStanding = nextStanding;
 	}
 }
