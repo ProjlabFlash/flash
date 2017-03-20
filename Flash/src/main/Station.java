@@ -11,7 +11,7 @@ public class Station extends MetaData {
 	 * @param color Az állomás színe
 	 */
 	public Station(Railway railway, Color color) {
-		
+		railway.setStation(this);
 	}
 	
 	/**

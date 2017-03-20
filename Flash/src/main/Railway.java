@@ -27,13 +27,13 @@ public class Railway {
 			if (ThisNeighbour.size() != 0)
 				{
 					//logger exit
-					Application.logger.exit("???");
+					Application.logger.exit(ThisNeighbour.get(0).toString());
 					return ThisNeighbour.get(0);
 				}
 			if (ThatNeighbour.size() != 0)
 				{
 					//logger exit
-					Application.logger.exit("???");
+					Application.logger.exit(ThatNeighbour.get(0).toString());
 					return ThatNeighbour.get(0);
 				}
 			//logger exit
@@ -50,7 +50,7 @@ public class Railway {
 					return null;
 				}
 			//logger exit
-			Application.logger.exit("???");
+			Application.logger.exit(ThatNeighbour.get(0).toString());
 			return ThatNeighbour.get(0);
 		}
 		
@@ -63,7 +63,7 @@ public class Railway {
 					return null;
 				}
 			//logger exit
-			Application.logger.exit("???");
+			Application.logger.exit(ThisNeighbour.get(0).toString());
 			return ThisNeighbour.get(0);
 		}
 		
