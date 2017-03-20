@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 @SuppressWarnings("unused")
 public class Switch extends Railway {
 
@@ -21,7 +23,15 @@ public class Switch extends Railway {
 	 * @param nextStanding A kapott sín.
 	 */
 	public void switchTo(Railway nextStanding) {
+		//logger enter
+		ArrayList<Object> paramlist=new ArrayList<Object>();
+		paramlist.add(nextStanding);
+		Application.logger.enter(this,"switchTo", paramlist);
+				
 		if (ThisNeighbour.contains(nextStanding) || ThatNeighbour.contains(nextStanding))
 			CurrentStanding = nextStanding;
+		
+		//logger exit
+		Application.logger.exit("");
 	}
 }

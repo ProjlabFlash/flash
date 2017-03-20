@@ -11,6 +11,12 @@ public class Tunnel extends MetaData {
 	}
 	
 	public void build(BuildingSpot buildingSpot1, BuildingSpot buildingSpot2) {
+		//logger enter
+		ArrayList<Object> paramlist=new ArrayList<Object>();
+		paramlist.add(buildingSpot1);
+		paramlist.add(buildingSpot2);
+		Application.logger.enter(this,"build", paramlist);
+				
 		bs1 = buildingSpot1; bs2 = buildingSpot2;
 		
 		ArrayList<Railway> bs1thisNeighbour = buildingSpot1.getThisNeighbour();
@@ -20,10 +26,19 @@ public class Tunnel extends MetaData {
 		
 		bs1.setNewNeighbours(bs2thisNeighbour, bs2thatNeighbour);
 		bs2.setNewNeighbours(bs1thisNeighbour, bs1thatNeighbour);
+		
+		//logger exit
+		Application.logger.exit("");
 	}
 	
 	public void destroy() {
+		//logger enter
+		Application.logger.enter(this,"destroy",null);
+				
 		bs1.setNewNeighbours(null, null);
 		bs2.setNewNeighbours(null, null);
+		
+		//logger exit
+		Application.logger.exit("");
 	}
 }
