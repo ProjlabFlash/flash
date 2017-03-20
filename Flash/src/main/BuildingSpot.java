@@ -13,9 +13,24 @@ public class BuildingSpot extends Railway {
 	}
 	
 	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
-		OldThisNeighbour = ThisNeighbour.get(0);
-		OldThatNeighbour = ThatNeighbour.get(0);
-		this.ThisNeighbour = thisNewNeighbour;
-		this.ThatNeighbour = thatNewNeighbour;
+		
+		if (thisNewNeighbour != null) {
+
+			OldThisNeighbour = ThisNeighbour.get(0);
+			ThisNeighbour = thisNewNeighbour;
+		} else {
+			ThisNeighbour = new ArrayList<Railway>();
+			ThisNeighbour.add(OldThisNeighbour);
+		}
+		
+		if (thisNewNeighbour != null) {
+			
+			OldThatNeighbour = ThatNeighbour.get(0);
+			this.ThatNeighbour = thatNewNeighbour;
+		} else {
+			
+			ThatNeighbour = new ArrayList<Railway>();
+			ThisNeighbour.add(OldThisNeighbour);
+		}
 	}
 }
