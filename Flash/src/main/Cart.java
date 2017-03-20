@@ -19,6 +19,8 @@ public class Cart extends MovingObject {
 	 */
 	public Cart(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart, Color color, boolean passengers) {
 		super(railwaySegment, previousRailwaySegment, nextCart);
+		this.color = color;
+		this.Passengers = passengers;
 	}
 	
 	/**
