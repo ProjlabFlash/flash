@@ -24,7 +24,7 @@ public class Station extends MetaData {
 		Application.logger.enter(this,"getColor");
 		
 		//logger exit
-		Application.logger.exit("");
+		Application.logger.exit(color.toString());
 		
 		return this.color;
 	}
