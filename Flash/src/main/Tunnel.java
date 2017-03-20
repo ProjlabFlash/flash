@@ -6,10 +6,18 @@ public class Tunnel extends MetaData {
 	
 	private BuildingSpot bs1, bs2;
 
+	/**
+	 * Konstruktor. Nem hoz létre mûködõ alagutat.
+	 */
 	public Tunnel() {
 		
 	}
 	
+	/**
+	 * Megépíti azalagutat a két paraméterül kapott építési terület között.
+	 * @param buildingSpot1 Egyik építési terület
+	 * @param buildingSpot2 Másik építési terület
+	 */
 	public void build(BuildingSpot buildingSpot1, BuildingSpot buildingSpot2) {
 		//logger enter
 		ArrayList<Object> paramlist=new ArrayList<Object>();
@@ -31,6 +39,9 @@ public class Tunnel extends MetaData {
 		Application.logger.exit("");
 	}
 	
+	/**
+	 * Lebontja az alagutat a két korábban paraméterül kapott építési terület között.
+	 */
 	public void destroy() {
 		//logger enter
 		Application.logger.enter(this,"destroy",null);
