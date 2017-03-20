@@ -38,7 +38,7 @@ public class Application {
 					int controlNumber = Integer.parseInt(input.readLine());
 					System.out.println(controlNumber);
 					
-					ArrayList<String> teszt = new ArrayList();
+					ArrayList<String> teszt = new ArrayList<String>();
 					teszt.add("salyt");
 					System.out.println(teszt.toString());
 					
@@ -118,6 +118,14 @@ public class Application {
 			Cart C1 = new Cart(underC1, underC2, C2, Color.SARGA, true);
 			Locomotive L = new Locomotive(underL, underC1, C1, 20);
 			
+			underC2.setName("underC2");
+			underC1.setName("underC1");
+			underL.setName("underL");
+			nextForL.setName("nextForL");
+			C2.setName("C2");
+			C1.setName("C1");
+			L.setName("L");
+			
 			underC2.insertNeighbour(underC1);
 			underC1.insertNeighbour(underL);
 			underL.insertNeighbour(nextForL);
@@ -131,12 +139,14 @@ public class Application {
 	protected class Utkozes extends MenuItem {
 		
 		Utkozes() {
-			super(1, "Két mozdony ütközése");
+			super(2, "Két mozdony ütközése");
 		}
 		
 		@Override
 		protected void run() {
+			
 			logger.setInit(true);
+			
 			Railway prevForL1 =new Railway(null);
 			Railway underL1 = new Railway(prevForL1);
 			Railway forCollision = new Railway(underL1);
@@ -145,7 +155,14 @@ public class Application {
 			Locomotive L1 = new Locomotive(underL1,prevForL1, null, 10);
 			Locomotive L2 = new Locomotive(forCollision, null, null, 0);
 			
+			prevForL1.setName("prevForL1");
+			underL1.setName("underL1");
+			forCollision.setName("forCollision");
+			L1.setName("L1");
+			L2.setName("L2");
+			
 			logger.setInit(false);
+			
 			L1.move();
 		}
 	}
@@ -153,23 +170,32 @@ public class Application {
 	protected class LeszallasMozdonyKocsi extends MenuItem {
 		
 		LeszallasMozdonyKocsi() {
-			super(1, "Leszállás");
+			super(3, "Leszállás egy kocsival");
 		}
 		
 		@Override
 		protected void run() {
-			logger.setInit(true);
+			
+		logger.setInit(true);
+		
 		Railway rwayAtStation = new Railway(null);
 		Railway rwayBeforeStation = new Railway(rwayAtStation);
 		rwayBeforeStation.insertNeighbour(rwayAtStation);
 		Cart C = new Cart(rwayBeforeStation, null,null,Color.KEK,true);
 		Locomotive L = new Locomotive(rwayAtStation,rwayBeforeStation, C, 10);
+		
+		rwayAtStation.setName("rwayAtStation");
+		rwayBeforeStation.setName("rwayBeforeStation");
+		C.setName("C");
+		L.setName("L");
+		
 		System.out.println("Leszállhatnak az utasok? (y/n)");
 		Scanner scan = new Scanner(System.in);
 		Character leszall = scan.next().charAt(0);
 		if(leszall.equals('y'))
 		{
 			Station S = new Station(rwayAtStation, Color.KEK);
+			S.setName("S");
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
 			
@@ -177,9 +203,11 @@ public class Application {
 		else if (leszall.equals('n'))
 		{
 			Station S = new Station(rwayAtStation, Color.PIROS);
+			S.setName("S");
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
 		}
+		
 		logger.setInit(false);
 		}
 	}
@@ -187,22 +215,32 @@ public class Application {
 	protected class LeszallasMozdonyUresJo extends MenuItem {
 		
 		LeszallasMozdonyUresJo() {
-			super(1, "Leszállás egy üres vagon mögül.");
+			super(4, "Leszállás egy üres vagon mögül.");
 		}
 		
 		@Override
 		protected void run() {
+			
 			logger.setInit(true);
+			
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
-			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			Railway rway2BeforeStation = new Railway(rwayBeforeStation);
 			rwayAtStation.insertNeighbour(rwayBeforeStation);
-			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
-			Cart ReadyforLeaveCart = new Cart(rway2BeoreStation,null, null, Color.KEK,true);
-			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyforLeaveCart, Color.KEK, false);
+			rwayBeforeStation.insertNeighbour(rway2BeforeStation);
+			Cart ReadyforLeaveCart = new Cart(rway2BeforeStation,null, null, Color.KEK,true);
+			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeforeStation, ReadyforLeaveCart, Color.KEK, false);
 			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
 			Station S = new Station(rwayAtStation, Color.KEK);
 			rwayAtStation.setStation(S);
+			
+			rwayAtStation.setName("rwayAtStation");
+			rwayBeforeStation.setName("rwayBeforeStation");
+			rway2BeforeStation.setName("rway2BeforeStation");
+			ReadyforLeaveCart.setName("ReadyForLeaveCart");
+			EmptyCart.setName("EmptyCart");
+			L.setName("L");
+			S.setName("S");
 			
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
@@ -212,22 +250,29 @@ public class Application {
 	protected class LeszallasMozdonyUresRossz extends MenuItem {
 		
 		LeszallasMozdonyUresRossz() {
-			super(1, "Lesázllási kísérlet. Üres vagont egy rossz  követi.");
+			super(5, "Lesázllási kísérlet. Üres vagont egy rossz követi.");
 		}
 		
 		@Override
 		protected void run() {
+			
 			logger.setInit(true);
+			
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
-			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			Railway rway2BeforeStation = new Railway(rwayBeforeStation);
 			rwayAtStation.insertNeighbour(rwayBeforeStation);
-			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
-			Cart WrongColoredFull = new Cart(rway2BeoreStation,null, null, Color.PIROS,true);
-			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeoreStation, WrongColoredFull, Color.KEK, false);
+			rwayBeforeStation.insertNeighbour(rway2BeforeStation);
+			Cart WrongColoredFull = new Cart(rway2BeforeStation,null, null, Color.PIROS,true);
+			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeforeStation, WrongColoredFull, Color.KEK, false);
 			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
 			Station S = new Station(rwayAtStation, Color.KEK);
 			rwayAtStation.setStation(S);
+			
+			rwayAtStation.setName("rwayAtStation");
+			rwayBeforeStation.setName("rwayBeforeStation");
+			rway2BeforeStation.setName("rway2BeforeStation");
+			WrongColoredFull.setName("WrongColoredFull");
 			
 			logger.setInit(false);
 			L.ArrivedAtStation(S);
@@ -237,7 +282,7 @@ public class Application {
 	protected class LeszallasJoJoRossz extends MenuItem {
 		
 		LeszallasJoJoRossz() {
-			super(1, "Lesázllás két vagonról.");
+			super(6, "Lesázllás két vagonról.");
 		}
 		
 		@Override
@@ -264,7 +309,7 @@ public class Application {
 	protected class Valtas extends MenuItem {
 		
 		Valtas() {
-			super(1, "Váltás");
+			super(7, "Váltás");
 		}
 		
 		@Override
@@ -297,7 +342,7 @@ public class Application {
 	protected class AlagutEpites extends MenuItem {
 		
 		AlagutEpites() {
-			super(1, "Alagútépítés");
+			super(8, "Alagútépítés");
 		}
 		
 		@Override
@@ -323,7 +368,7 @@ public class Application {
 	protected class AlagutRombolas extends MenuItem {
 		
 		AlagutRombolas() {
-			super(1, "Alagút lerombolása");
+			super(9, "Alagút lerombolása");
 		}
 		
 		@Override
@@ -355,7 +400,7 @@ public class Application {
 	protected class ValtasVonattal extends MenuItem {
 		
 		ValtasVonattal() {
-			super(1, "Váltlás vonatal");
+			super(10, "Váltlás vonatal");
 		}
 		
 		@Override
