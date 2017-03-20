@@ -10,12 +10,23 @@ public class Railway {
 	protected MovingObject OnMe;
 	private Station station;
 	
+	/**
+	 * Konstruktor. Beállítja a paraméterül kapott Railway-t a szomszédjának,
+	 * és beállítja magát annak a szomszédjaként.
+	 * @param previousRailway A kapott railway
+	 */
 	public Railway(Railway previousRailway) {
 		
 		if (previousRailway != null)
 			ThisNeighbour.add(previousRailway);
 	}
 	
+	/**
+	 * Visszaadja azt a sínt, amire a mozdony továbbléphet
+	 * a paraméterül kapott elõzõ sín alapján.
+	 * @param previousRailway
+	 * @return A sín, amire a mozdony következõnek léphet.
+	 */
 	public Railway next(Railway previousRailway) {
 		//logger enter
 		ArrayList<Object> paramlist=new ArrayList<Object>();
