@@ -24,16 +24,7 @@ public class BuildingSpot extends Railway {
 	 */
 	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
 		//logger enter
-		ArrayList<Object> paramlist=new ArrayList<Object>();
-		//Elavult
-		/**Object[] items1 = thisNewNeighbour.toArray();
-		Object[] items2 = thatNewNeighbour.toArray();
-		
-		for(Object item: items1)
-			paramlist.add(item);
-		for(Object item: items2)
-			paramlist.add(item);*/
-		
+		ArrayList<Object> paramlist=new ArrayList<Object>();	
 		paramlist.add(thisNewNeighbour);
 		paramlist.add(thatNewNeighbour);
 		

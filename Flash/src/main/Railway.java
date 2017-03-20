@@ -106,7 +106,7 @@ public class Railway extends MetaData{
 	 */
 	public ArrayList<Railway> getThisNeighbour() {
 		//logger enter
-		Application.logger.enter(this, "getThisNeighbour", null);
+		Application.logger.enter(this, "getThisNeighbour");
 		
 		//logger exit
 		Application.logger.exit(ThisNeighbour.toString());
@@ -120,7 +120,7 @@ public class Railway extends MetaData{
 	 */
 	public ArrayList<Railway> getThatNeighbour() {
 		//logger enter
-		Application.logger.enter(this, "getThatNeighbour", null);
+		Application.logger.enter(this, "getThatNeighbour");
 				
 		//logger exit
 		Application.logger.exit(ThatNeighbour.toString());
@@ -134,7 +134,7 @@ public class Railway extends MetaData{
 	 */
 	public void insertNeighbour(Railway newNeighbour) {
 		//logger enter
-		Application.logger.enter(this, "getThatNeighbour", null);
+		Application.logger.enter(this, "getThatNeighbour");
 						
 		
 		ThatNeighbour.add(newNeighbour);

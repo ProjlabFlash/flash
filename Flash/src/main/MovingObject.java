@@ -48,7 +48,7 @@ public abstract class MovingObject extends MetaData {
 	 */
 	public void crash() {
 		//logger enter
-		Application.logger.enter(this, "crash", null);
+		Application.logger.enter(this, "crash");
 		
 		Application.lose();
 		

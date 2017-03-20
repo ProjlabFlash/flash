@@ -24,7 +24,7 @@ public class Locomotive extends MovingObject {
 	 */
 	public void move() {
 		//logger enter
-		Application.logger.enter(this,"move",null);
+		Application.logger.enter(this,"move");
 		
 		Railway nextRailwaySegment = CurrentRailwaySegment.next(PreviousRailwaySegment);
 		step(nextRailwaySegment);

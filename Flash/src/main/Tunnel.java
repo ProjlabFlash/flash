@@ -44,7 +44,7 @@ public class Tunnel extends MetaData {
 	 */
 	public void destroy() {
 		//logger enter
-		Application.logger.enter(this,"destroy",null);
+		Application.logger.enter(this,"destroy");
 				
 		bs1.setNewNeighbours(null, null);
 		bs2.setNewNeighbours(null, null);
