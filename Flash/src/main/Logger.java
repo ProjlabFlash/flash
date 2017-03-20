@@ -14,6 +14,7 @@ public class Logger {
 	public void setInit(boolean asd){init=asd;}
 	public void enter(Object obj, String fName, ArrayList<Object>params)
 	{
+		
 		if(!init){
 		for(int i=0;i<tabcnt;i++)
 		{
@@ -23,10 +24,12 @@ public class Logger {
 		line=line.concat(obj.toString());
 		line=line.concat(".");
 		line=line.concat("(");
+		if(!params.isEmpty()){
 		for(int i=0;i<params.size();i++)
 		{
-			line=line.concat(params.toString());
+			line=line.concat(params.get(i).toString());
 			if(params.size()!=(i+1)) line=line.concat(",");
+		}
 		}
 		line=line.concat(")");
 		System.out.println(line);
