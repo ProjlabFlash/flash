@@ -206,36 +206,41 @@ public class Application {
 			Cart C = new Cart(rwayBeforeStation, null,null,Color.KEK,true);
 			Locomotive L = new Locomotive(rwayAtStation,rwayBeforeStation, C, 10);
 		
-		rwayAtStation.setName("rwayAtStation");
-		rwayBeforeStation.setName("rwayBeforeStation");
-		C.setName("C");
-		L.setName("L");
+			rwayAtStation.setName("rwayAtStation");
+			rwayBeforeStation.setName("rwayBeforeStation");
+			C.setName("C");
+			L.setName("L");
 		
-		System.out.println("Leszállhatnak az utasok? (y/n)");
-		Scanner scan = new Scanner(System.in);
-		Character leszall = scan.next().charAt(0);
-		if(leszall.equals('y'))
-			{
-			Station S = new Station(rwayAtStation, Color.KEK);
-			S.setName("S");
-			/** 
-			 * 	Beállítja a Logger-t tesztelései módba
-			 *	A Logger ilyenkor ír standard outputra
-			 */
-			logger.setInit(false);
-			L.ArrivedAtStation(S);
+			System.out.println("Leszállhatnak az utasok? (y/n)");
+			Scanner scan = new Scanner(System.in);
+			Character leszall = scan.next().charAt(0);
+			if(leszall.equals('y')) {
+				
+				Station S = new Station(rwayAtStation, Color.KEK);
+				S.setName("S");
+				/** 
+				 * 	Beállítja a Logger-t tesztelései módba
+				 *	A Logger ilyenkor ír standard outputra
+				 */
+				logger.setInit(false);
+				/**
+				 * Elindítja az LeszallasMozdonyKocsi szekvenciáját
+				 */
+				L.ArrivedAtStation(S);
+			} else if (leszall.equals('n')) {
 			
-		} else if (leszall.equals('n'))
-			{
-			Station S = new Station(rwayAtStation, Color.PIROS);
-			S.setName("S");
-			/** 
-			 * 	Beállítja a Logger-t tesztelései módba
-			 *	A Logger ilyenkor ír standard outputra
-			 */
-			logger.setInit(false);
-			L.ArrivedAtStation(S);
-		}
+				Station S = new Station(rwayAtStation, Color.PIROS);
+				S.setName("S");
+				/** 
+				 * 	Beállítja a Logger-t tesztelései módba
+				 *	A Logger ilyenkor ír standard outputra
+				 */
+				logger.setInit(false);
+				/**
+				 * Elindítja az LeszallasMozdonyKocsi szekvenciáját
+				 */
+				L.ArrivedAtStation(S);
+			}
 		}
 	}
 	
@@ -252,7 +257,10 @@ public class Application {
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
-			
+			/** 
+			 * 	Beállítja a Logger-t inicializáló módba
+			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 */
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
 			Railway rway2BeforeStation = new Railway(rwayBeforeStation);
@@ -276,6 +284,9 @@ public class Application {
 			 *	A Logger ilyenkor ír standard outputra
 			 */
 			logger.setInit(false);
+			/**
+			 * Elindítja az LeszallasMozdonyUresJo szekvenciáját
+			 */
 			L.ArrivedAtStation(S);
 		}
 	}
@@ -293,7 +304,9 @@ public class Application {
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
-			
+			/**
+			 * Inicializálja az LeszallasMozdonyUresRossz szekvenciáját
+			 */
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
 			Railway rway2BeforeStation = new Railway(rwayBeforeStation);
@@ -310,11 +323,16 @@ public class Application {
 			rway2BeforeStation.setName("rway2BeforeStation");
 			WrongColoredFull.setName("WrongColoredFull");
 			EmptyCart.setName("EmptyCart");
+			L.setName("L");
+			S.setName("S");
 			/** 
 			 * 	Beállítja a Logger-t tesztelései módba
 			 *	A Logger ilyenkor ír standard outputra
 			 */
 			logger.setInit(false);
+			/**
+			 * Elindítja az LeszallasMozdonyUresRossz szekvenciáját
+			 */
 			L.ArrivedAtStation(S);
 		}
 	}
@@ -332,6 +350,10 @@ public class Application {
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
+			
+			/**
+			 * Inicializálja az LeszallasJoJoRossz szekvenciáját
+			 */
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
 			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
@@ -342,21 +364,35 @@ public class Application {
 			Cart WrongColoredFull = new Cart(rway3BeoreStation, null, null, Color.PIROS, true);
 			Cart ReadyForLeave_1 = new Cart(rway2BeoreStation, rway3BeoreStation, WrongColoredFull, Color.KEK, true);
 			Cart ReadyForLeave_2 = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyForLeave_1, Color.KEK, true);
+			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, ReadyForLeave_2, 10);
 			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
+			
+			rwayAtStation.setName("rwayAtStation");
+			rwayBeforeStation.setName("rwayBeforeStation");
+			rway2BeoreStation.setName("rway2BeforeStation");
+			rway3BeoreStation.setName("rway3BeforeStation");
+			WrongColoredFull.setName("WrongColoredFull");
+			ReadyForLeave_1.setName("ReadyForLeave_1");
+			ReadyForLeave_2.setName("ReadyForLeave_2");
+			S.setName("S");
+			L.setName("L");
 			/** 
 			 * 	Beállítja a Logger-t tesztelései módba
 			 *	A Logger ilyenkor ír standard outputra
 			 */
 			logger.setInit(false);
-			rwayAtStation.setStation(S);
-			
+			/**
+			 * Elindítja az LeszallasJoJoRossz szekvenciáját
+			 */
+			L.ArrivedAtStation(S);
 		}
 	}
 	
 	protected class Valtas extends MenuItem {
 		
 		Valtas() {
-			super(7, "Váltás");
+			super(7, "Váltás, majd azon áthaladás.");
 		}
 		
 		@Override
@@ -366,6 +402,9 @@ public class Application {
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
+			/**
+			 * Inicializálja az Valtas szekvenciáját
+			 */
 			Railway R1 = new Railway(null);
 			Switch SW = new Switch(null, R1);
 			Railway R2 = new Railway(SW);
@@ -374,19 +413,31 @@ public class Application {
 			SW.insertNeighbour(R2);
 			SW.insertNeighbour(R3);
 			SW.switchTo(R2);
-			System.out.println("Áthaladjon a vonat?");
+			Locomotive L = new Locomotive(R1, null, null, 10);
+			
+			R1.setName("R1");
+			R2.setName("R2");
+			R3.setName("R3");
+			SW.setName("SW");
+			L.setName("L");
+			
 			logger.setInit(false);
+			System.out.println("A váltó R2 fele áll. Váltson-e a váltó?(y/n)");
 			Scanner scan = new Scanner(System.in);
 			Character valt = scan.next().charAt(0);
 			if(valt.equals('y'))
 			{
+				/**
+				 * Elindítja az Valtas szekvenciáját
+				 */
 				SW.switchTo(R3);
 			}
-			logger.setInit(true);
-			Locomotive L = new Locomotive(SW,R1, null,0);
-	
-			logger.setInit(false);
-
+			
+			/**
+			 * Vonat áthaladása a váltón.
+			 */
+			L.move();
+			L.move();
 		}
 	}
 	
@@ -403,6 +454,9 @@ public class Application {
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
+			/**
+			 * Inicializálja az AlagutEpites szekvenciáját
+			 */
 			Railway r11 = new Railway(null);
 			BuildingSpot bs1 = new BuildingSpot(r11);
 			Railway r12 = new Railway(bs1);
@@ -414,11 +468,22 @@ public class Application {
 			bs1.insertNeighbour(r12);
 			r21.insertNeighbour(bs2);
 			bs2.insertNeighbour(r22);
+			
+			r11.setName("r11");
+			r12.setName("r12");
+			r21.setName("r21");
+			r22.setName("r22");
+			bs1.setName("bs1");
+			bs2.setName("bs2");
+			T.setName("T");
 			/** 
 			 * 	Beállítja a Logger-t tesztelései módba
 			 *	A Logger ilyenkor ír standard outputra
 			 */
 			logger.setInit(false);
+			/**
+			 * Elindítja az AlagutEpites szekvenciáját
+			 */
 			T.build(bs1, bs2);
 		}
 	}
@@ -436,6 +501,9 @@ public class Application {
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
+			/**
+			 * Inicializálja az AlagutRombolas szekvenciáját
+			 */
 			Railway r11 = new Railway(null);
 			BuildingSpot bs1 = new BuildingSpot(r11);
 			Railway r12 = new Railway(bs1);
@@ -453,11 +521,22 @@ public class Application {
 			ArrayList<Railway> swap11 = r11.getThisNeighbour();
 			ArrayList<Railway> swap12 = r12.getThisNeighbour();
 			bs1.setNewNeighbours(swap11, swap12);
+			
+			r11.setName("r11");
+			r12.setName("r12");
+			r21.setName("r21");
+			r22.setName("r22");
+			bs1.setName("bs1");
+			bs2.setName("bs2");
+			T.setName("T");
 			/** 
 			 * 	Beállítja a Logger-t tesztelései módba
 			 *	A Logger ilyenkor ír standard outputra
 			 */
 			logger.setInit(false);
+			/**
+			 * Elindítja az AlagutRombolas szekvenciáját
+			 */
 			T.destroy();
 		}
 	}
@@ -483,11 +562,20 @@ public class Application {
 			current.insertNeighbour(prev);
 			current.insertNeighbour(R3);
 			Locomotive L = new Locomotive(current, prev, null, 10);
+			
+			next.setName("next");
+			current.setName("currentSwitch");
+			prev.setName("prev");
+			R3.setName("R3");
+			L.setName("L");
 			/** 
 			 * 	Beállítja a Logger-t tesztelései módba
 			 *	A Logger ilyenkor ír standard outputra
 			 */
 			logger.setInit(false);
+			/**
+			 * Elindítja az ValtasVonattal szekvenciáját
+			 */
 			L.move();
 		}
 	}
