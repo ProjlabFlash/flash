@@ -23,6 +23,7 @@ public class Logger {
 		line=line.concat("->");
 		line=line.concat(obj.toString());
 		line=line.concat(".");
+		line=line.concat(fName);
 		line=line.concat("(");
 		
 		for(int i=0;i<params.size();i++)
@@ -50,6 +51,7 @@ public class Logger {
 		line=line.concat("->");
 		line=line.concat(obj.toString());
 		line=line.concat(".");
+		line=line.concat(fName);
 		line=line.concat("()");
 		System.out.println(line);
 		line="";
