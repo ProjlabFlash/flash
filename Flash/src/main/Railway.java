@@ -94,6 +94,8 @@ public class Railway extends MetaData{
 		paramlist.add(OnMe);
 		Application.logger.enter(this, "setOnMe", paramlist);
 		
+		if (OnMe != null && this.OnMe != null)
+			OnMe.crash();
 		this.OnMe = OnMe;
 		
 		//logger exit
