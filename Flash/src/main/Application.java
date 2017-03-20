@@ -184,12 +184,21 @@ public class Application {
 	protected class LeszallasMozdonyUresRossz extends MenuItem {
 		
 		LeszallasMozdonyUresRossz() {
-			super(1, "");
+			super(1, "Lesázllási kísérlet. Üres vagont egy rossz  követi.");
 		}
 		
 		@Override
 		protected void run() {
-			
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			rwayAtStation.insertNeighbour(rwayBeforeStation);
+			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
+			Cart WrongColoredFull = new Cart(rway2BeoreStation,null, null, Color.PIROS,true);
+			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeoreStation, WrongColoredFull, Color.KEK, false);
+			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
+			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
 		}
 	}
 	
@@ -201,7 +210,18 @@ public class Application {
 		
 		@Override
 		protected void run() {
-			
+			Railway rwayAtStation = new Railway(null);
+			Railway rwayBeforeStation = new Railway(rwayAtStation);
+			Railway rway2BeoreStation = new Railway(rwayBeforeStation);
+			Railway rway3BeoreStation = new Railway(rway2BeoreStation);
+			rwayAtStation.insertNeighbour(rwayBeforeStation);
+			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
+			rway2BeoreStation.insertNeighbour(rway3BeoreStation);
+			Cart WrongColoredFull = new Cart(rway3BeoreStation, null, null, Color.PIROS, true);
+			Cart ReadyForLeave_1 = new Cart(rway2BeoreStation, rway3BeoreStation, WrongColoredFull, Color.KEK, true);
+			Cart ReadyForLeave_2 = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyForLeave_1, Color.KEK, true);
+			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
 		}
 	}
 	
