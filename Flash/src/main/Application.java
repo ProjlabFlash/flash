@@ -11,7 +11,7 @@ public class Application {
 	
 	static private List<MenuItem> items = new ArrayList<MenuItem>();
 	
-	static private Logger logger = new Logger();
+	static public Logger logger = new Logger();
 	
 	static BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
 	
