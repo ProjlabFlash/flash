@@ -54,4 +54,8 @@ public class Railway extends MetaData {
 	public void insertNeighbour(Railway newNeighbour) {
 		ThatNeighbour.add(newNeighbour);
 	}
+	
+	public void setStation(Station station) {
+		this.station = station;
+	}
 }
