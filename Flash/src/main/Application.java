@@ -163,7 +163,7 @@ public class Application {
 	protected class LeszallasMozdonyUresJo extends MenuItem {
 		
 		LeszallasMozdonyUresJo() {
-			super(1, "");
+			super(1, "Leszállás egy üres vagon mögül.");
 		}
 		
 		@Override
@@ -174,6 +174,10 @@ public class Application {
 			rwayAtStation.insertNeighbour(rwayBeforeStation);
 			rwayBeforeStation.insertNeighbour(rway2BeoreStation);
 			Cart ReadyforLeaveCart = new Cart(rway2BeoreStation,null, null, Color.KEK,true);
+			Cart EmptyCart = new Cart(rwayBeforeStation, rway2BeoreStation, ReadyforLeaveCart, Color.KEK, false);
+			Locomotive L = new Locomotive(rwayAtStation, rwayBeforeStation, EmptyCart, 10);
+			Station S = new Station(rwayAtStation, Color.KEK);
+			rwayAtStation.setStation(S);
 		}
 	}
 	
