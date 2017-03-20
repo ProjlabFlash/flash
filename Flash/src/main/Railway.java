@@ -40,6 +40,7 @@ public class Railway extends MetaData {
 	
 	public void setOnMe(MovingObject OnMe) {
 		this.OnMe = OnMe;
+			
 	}
 	
 	public ArrayList<Railway> getThisNeighbour() {
