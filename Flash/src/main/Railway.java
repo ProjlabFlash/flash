@@ -84,6 +84,10 @@ public class Railway {
 		return null;
 	}
 	
+	/**
+	 * A paraméter szerint beállítja, hogy ki melyik vonatelem van éppen a sínen.
+	 * @param OnMe A sínre beállítandó vonatelem.
+	 */
 	public void setOnMe(MovingObject OnMe) {
 		//logger enter
 		ArrayList<Object> paramlist=new ArrayList<Object>();
@@ -96,6 +100,10 @@ public class Railway {
 		Application.logger.exit("");
 	}
 	
+	/**
+	 * Getter az egyik szomszédra
+	 * @return Az egyik szomszéd
+	 */
 	public ArrayList<Railway> getThisNeighbour() {
 		//logger enter
 		Application.logger.enter(this, "getThisNeighbour", null);
@@ -106,6 +114,10 @@ public class Railway {
 		return ThisNeighbour;
 	}
 	
+	/**
+	 * Getter a másik szomszédra
+	 * @return A másik szomszéd
+	 */
 	public ArrayList<Railway> getThatNeighbour() {
 		//logger enter
 		Application.logger.enter(this, "getThatNeighbour", null);
@@ -116,6 +128,10 @@ public class Railway {
 		return ThatNeighbour;
 	}
 	
+	/**
+	 * Elhelyezi a szomszédjai közt a paraméterül kapott Railway-t.
+	 * @param newNeighbour A paraméterül kapott Railway
+	 */
 	public void insertNeighbour(Railway newNeighbour) {
 		//logger enter
 		Application.logger.enter(this, "getThatNeighbour", null);
@@ -126,6 +142,10 @@ public class Railway {
 		Application.logger.exit("");
 	}
 	
+	/**
+	 * Beállítja a sínhez tartozó megállót.
+	 * @param station A sínhez tartozó megálló.
+	 */
 	public void setStation(Station station) {
 		//logger enter
 		ArrayList<Object> paramlist=new ArrayList<Object>();
