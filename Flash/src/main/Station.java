@@ -12,6 +12,7 @@ public class Station extends MetaData {
 	 */
 	public Station(Railway railway, Color color) {
 		railway.setStation(this);
+		this.color = color;
 	}
 	
 	/**
