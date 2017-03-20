@@ -34,6 +34,10 @@ public class Application {
 					int controlNumber = Integer.parseInt(input.readLine());
 					System.out.println(controlNumber);
 					
+					ArrayList<String> teszt = new ArrayList();
+					teszt.add("salyt");
+					System.out.println(teszt.toString());
+					
 					if (controlNumber == 0)
 						break;
 					
