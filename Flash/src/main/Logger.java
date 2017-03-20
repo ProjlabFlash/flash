@@ -24,14 +24,32 @@ public class Logger {
 		line=line.concat(obj.toString());
 		line=line.concat(".");
 		line=line.concat("(");
-		if(!params.isEmpty()){
+		
 		for(int i=0;i<params.size();i++)
 		{
 			line=line.concat(params.get(i).toString());
 			if(params.size()!=(i+1)) line=line.concat(",");
 		}
-		}
+		
 		line=line.concat(")");
+		System.out.println(line);
+		line="";
+		tabcnt++;
+		}
+	}
+	
+	public void enter(Object obj, String fName)
+	{
+		
+		if(!init){
+		for(int i=0;i<tabcnt;i++)
+		{
+			line=line.concat("\t");
+		}
+		line=line.concat("->");
+		line=line.concat(obj.toString());
+		line=line.concat(".");
+		line=line.concat("()");
 		System.out.println(line);
 		line="";
 		tabcnt++;
