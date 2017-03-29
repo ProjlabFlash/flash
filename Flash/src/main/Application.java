@@ -9,26 +9,26 @@ import java.util.Scanner;
 
 public class Application {
 
-	//Tárolja a lehetséges menüpontokat
+	//Tarolja a lehetseges menupontokat
 	static private List<MenuItem> items = new ArrayList<MenuItem>();
 	
-	//Az obejktumok között történõ függvényhívásokat közvetíti a felhasználó felé.
+	//Az obejktumok kozott torteno fuggvenyhivasokat kozvetiti a felhasznalo fele.
 	static public Logger logger = new Logger();
 	
 	/**
-	 * Az egész program belépési pontja
+	 * Az egesz program belepesi pontja
 	 * @param args pl.: parancssori argumentumok
 	 */
 	public static void main(String[] args) {
 		
 		/**
-		 * A program fõ hurka amiben a felhasználót kérdezi melyik tesztesetet szeretné látni, majd azt végre is hajtja
+		 * A program fo hurka amiben a felhasznalot kerdezi melyik tesztesetet szeretne latni, majd azt vegre is hajtja
 		 */
 		while(true) {
 			
 			BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
 			
-			//A menüelemek listához adása
+			//A menuelemek listahoz adasa
 			items.add(new VonatLeptetes());
 			items.add(new Utkozes());
 			items.add(new LeszallasMozdonyKocsi());
@@ -41,24 +41,24 @@ public class Application {
 			items.add(new ValtasVonattal());
 			
 			int controlNumber = 1;
-			//Beolvasási ciklus... Amíg nem kaptunk egy megfelelõ
+			//Beolvasasi ciklus... Amig nem kaptunk egy megfelelo
 			while(true) {
 				
 				try {
 					
-					// A felhasználónak kiírt üzenet. Tartalmaz minden menüpontról egy leírást.
+					// A felhasznalonak kiirt uzenet. Tartalmaz minden menupontrol egy leirast.
 					System.out.println("Írja be a megfelelõ menüponthoz tartozó számot annak kiválasztásához, vagy 0-át a kilépéshez...");
 					for (MenuItem item: items)
 						System.out.println(item.id + ": " + item.name);
 					
-					// A felhasználó válaszának beolvasása
+					// A felhasznalo valaszanak beolvasasa
 					controlNumber = Integer.parseInt(input.readLine());
 					
-					//Kilépés a programból
+					//Kilepes a programbol
 					if (controlNumber == 0)
 						break;
 					
-					//A megfelelõ menüponthoz tartozó objektum kiválaszása
+					//A megfelelo menuponthoz tartozo objektum kivalaszasa
 					for (MenuItem item: items) {
 						if (item.id == controlNumber) {
 							
@@ -84,7 +84,7 @@ public class Application {
 
 	
 	/**
-	 * Gyõzelem esetén (azaz, ha minden kocsi kiürült) a következõ pályát tölti be.
+	 * Gyozelem eseten (azaz, ha minden kocsi kiurult) a kovetkezo palyat tolti be.
 	 */
 	public static void win() {
 		logger.enter(new Application(), "win", null);
@@ -92,7 +92,7 @@ public class Application {
 	}
 	
 	/**
-	 * Vereség esetén a játékmenet leállítását kezeli.
+	 * Vereseg eseten a jatekmenet leallitasat kezeli.
 	 */
 	public static void lose() {
 		logger.enter(new Application(), "lose", null);
@@ -100,17 +100,17 @@ public class Application {
 	}
 	
 	/**
-	 * A logger általi kiiratáshoz szükséges.
+	 * A logger altali kiiratashoz szukseges.
 	 */
 	public String toString() {
 		return "Application";
 	}
 	
 	/**
-	 * Az egyes menüpontok adatait fogja össze.
-	 * Tartalmaz egy számot ami alapján lehet rá hivatkoznia a felhasználónak, egy rövid leírást,
-	 * és egy függvényt ami az adott menüponthoz tartozó teszteset, és ezt fogja össze egy osztállyá, 
-	 * amibõl aztán leszármazással lehet menüpontokat létrehozni.
+	 * Az egyes menupontok adatait fogja ossze.
+	 * Tartalmaz egy szamot ami alapjan lehet ra hivatkoznia a felhasznalonak, egy rovid leirast,
+	 * es egy függvenyt ami az adott menuponthoz tartozo teszteset, es ezt fogja ossze egy osztallya, 
+	 * amibol aztan leszarmazassal lehet menupontokat letrehozni.
 	 */
 	protected static abstract class MenuItem {
 		
@@ -136,12 +136,12 @@ public class Application {
 		@Override
 		protected void run() {
 			/** 
-			 * 	Beállítja a Logger-t inicializáló módba
-			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 * 	Beallitja a Logger-t inicializalo modba
+			 *	Nem ir ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
 			/**
-			 * Inicializálja az VonatLeptetes szekvenciáját
+			 * Inicializalja az VonatLeptetes szekvenciajat
 			 */
 			Railway underC2 = new Railway(null);
 			Railway underC1 = new Railway(underC2);
@@ -163,12 +163,12 @@ public class Application {
 			underC1.insertNeighbour(underL);
 			underL.insertNeighbour(nextForL);
 			/** 
-			 * 	Beállítja a Logger-t tesztelései módba
-			 *	A Logger ilyenkor ír standard outputra
+			 * 	Beallitja a Logger-t tesztelesei modba
+			 *	A Logger ilyenkor ir standard outputra
 			 */
 			logger.setInit(false);
 			/**
-			 * Elindítja az VonatLeptetes szekvenciáját
+			 * Elinditja az VonatLeptetes szekvenciajat
 			 */
 			L.move();
 		}
@@ -183,12 +183,12 @@ public class Application {
 		@Override
 		protected void run() {
 			/** 
-			 * 	Beállítja a Logger-t inicializáló módba
-			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 * 	Beallitja a Logger-t inicializalo modba
+			 *	Nem ir ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
 			/**
-			 * Inicializálja az Utkozes szekvenciáját
+			 * Inicializalja az Utkozes szekvenciajat
 			 */
 			Railway prevForL1 =new Railway(null);
 			Railway underL1 = new Railway(prevForL1);
@@ -204,12 +204,12 @@ public class Application {
 			L1.setName("L1");
 			L2.setName("L2");
 			/** 
-			 * 	Beállítja a Logger-t tesztelései módba
-			 *	A Logger ilyenkor ír standard outputra
+			 * 	Beallitja a Logger-t tesztelesei modba
+			 *	A Logger ilyenkor ir standard outputra
 			 */
 			logger.setInit(false);
 			/**
-			 * Elindítja az Utkozes szekvenciáját
+			 * Elinditja az Utkozes szekvenciajat
 			 */
 			L1.move();
 		}
@@ -224,12 +224,12 @@ public class Application {
 		@Override
 		protected void run() {
 			/** 
-			 * 	Beállítja a Logger-t inicializáló módba
-			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
+			 * 	Beallitja a Logger-t inicializaló modba
+			 *	Nem ir ki ilyenkor a Logger semmit a kimenetre
 			 */	
 			logger.setInit(true);
 			/**
-			 * Inicializálja az LeszallasMozdonyKocsi szekvenciáját
+			 * Inicializalja az LeszallasMozdonyKocsi szekvenciajat
 			 */
 			Railway rwayAtStation = new Railway(null);
 			Railway rwayBeforeStation = new Railway(rwayAtStation);
@@ -250,12 +250,12 @@ public class Application {
 				Station S = new Station(rwayAtStation, Color.KEK);
 				S.setName("S");
 				/** 
-				 * 	Beállítja a Logger-t tesztelései módba
-				 *	A Logger ilyenkor ír standard outputra
+				 * 	Beallitja a Logger-t tesztelesei modba
+				 *	A Logger ilyenkor ir standard outputra
 				 */
 				logger.setInit(false);
 				/**
-				 * Elindítja az LeszallasMozdonyKocsi szekvenciáját
+				 * Elinditja az LeszallasMozdonyKocsi szekvenciajat
 				 */
 				L.ArrivedAtStation(S);
 			} else if (leszall.equals('n')) {
@@ -263,12 +263,12 @@ public class Application {
 				Station S = new Station(rwayAtStation, Color.PIROS);
 				S.setName("S");
 				/** 
-				 * 	Beállítja a Logger-t tesztelései módba
-				 *	A Logger ilyenkor ír standard outputra
+				 * 	Beallitja a Logger-t tesztelesei modba
+				 *	A Logger ilyenkor ir standard outputra
 				 */
 				logger.setInit(false);
 				/**
-				 * Elindítja az LeszallasMozdonyKocsi szekvenciáját
+				 * Elinditja az LeszallasMozdonyKocsi szekvenciajat
 				 */
 				L.ArrivedAtStation(S);
 			}
@@ -284,7 +284,7 @@ public class Application {
 		@Override
 		protected void run() {
 			/** 
-			 * 	Beállítja a Logger-t inicializáló módba
+			 * 	Beallitja a Logger-t inicializalo modba
 			 *	Nem ír ki ilyenkor a Logger semmit a kimenetre
 			 */
 			logger.setInit(true);
